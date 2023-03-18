@@ -36,4 +36,27 @@ class AdminController extends Controller
         ]
         ],200);
    }
+   public function show_register()
+   {
+    //munculkan semua akun role user
+    $users=User::where('role','user')->get();
+    return response()->json([
+        "data"=>[
+            'msg'=>"user registrasi",
+            'data'=>$users
+        ]
+        ],200);
+   }
+   public function show_register_by_id($id){
+
+    //munculkan semua akun berdasarkan id
+    $user=User::find($id);
+
+    return response()->json([
+        "data"=>[
+            'msg'=>"user id:{$id}",
+            'data'=>$user
+        ]
+        ],200);
+   }
 }

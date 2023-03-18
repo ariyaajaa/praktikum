@@ -15,10 +15,13 @@ use App\Http\Controllers\AdminController;//PANGGIL API
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//guest routes
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
+//admin routes
 Route::middleware('admin.api')->prefix('admin')->group (function () {
     Route::post('register',[AdminController::class,'register']);
     Route::get('register',[AdminController::class,'show_register']);
     Route::get('register/{id}',[AdminController::class,'show_register_by_id']);
+    Route::get('register/{id}',[AdminController::class,'update_register']);
 });

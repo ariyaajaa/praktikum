@@ -59,4 +59,36 @@ class AdminController extends Controller
         ]
         ],200);
    }
+   public function update_register(Request $request,$id){
+    $user=User::find($id);
+    if($user){
+        $validator=Validator::make($request->all(),[
+            'nama'=>'required',
+            'password'=>'min:8',
+            'confirmation_password'=>'same:password',
+            'role'=>'required|in:admin,user',
+            'status'=>'required|in:aktif,non-aktif',
+            'email_validate'=>'required|email'
+        ]);
+
+        if($validator->fails()){
+            return messageError($validator->messages()->toArray());
+        }
+        $data=$validator->validated();
+        User::where('id',$id)->update($data);
+        return response()->json([
+            'data'=>[
+                'msg'=>'user dengan id :{$id} berhasil update',
+                'nama'=> $data['nama'],
+                'email'=> $user['email'],
+                'role'=> $data['role'],
+            ]
+            ],200);
+    }
+    return response()->json([
+        'data'=>[
+            'msg'=>'user id: {$id},tidak ditemukan'
+        ]
+        ],422);
+   }
 }

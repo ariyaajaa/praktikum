@@ -21,8 +21,8 @@ class UserObserver
     {
     //simpan ke dalam tabel log
     Log::create([
-        'module'=>'register',
-        'action'=>'registrasi akun',
+        'module'=>'sunting',//sunting akun
+        'action'=>'sunting akun',
         'useraccess'=>$user->email
     ]);
     }

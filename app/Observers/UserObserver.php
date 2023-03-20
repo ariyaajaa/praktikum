@@ -21,8 +21,8 @@ class UserObserver
     {
     //simpan ke dalam tabel log
     Log::create([
-        'module'=>'sunting',//sunting akun
-        'action'=>'sunting akun',
+        'module'=>'register',
+        'action'=>'registrasi akun',
         'useraccess'=>$user->email
     ]);
     }
@@ -35,7 +35,11 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        //
+        Log::create([
+            'module'=>'sunting',//sunting akun
+            'action'=>'sunting akun',
+            'useraccess'=>$user->email
+        ]);
     }
 
     /**
@@ -44,9 +48,13 @@ class UserObserver
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function deleted(User $user)
+    public function deleting(User $user)
     {
-        //
+        Log::create([
+            'module'=>'delete',//sunting akun
+            'action'=>'delete akun',
+            'useraccess'=>$user->email
+        ]);
     }
 
     /**

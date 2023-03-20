@@ -91,4 +91,54 @@ class AdminController extends Controller
         ]
         ],422);
    }
+   public function delete_register($id){
+    $user=User::find($id);
+    if($user){
+        $user->delete();
+        return response()->json(
+            [
+                "data" =>[
+                    'msg'=>'user dengan id{$id},berhasil dihapus'
+                ]
+
+            ],422);
+     }
+    }
+
+     public function activation_account($id){
+        $user=User::find($id);
+        if ($user){
+            User::where('id',$id)->update(['status'=>'aktif']);
+
+            return response()->json([
+                "data"=>[
+                    'msg'=>'user dengan id'.$id.'berhasil diaktifkan'
+                ]
+                ],200);
+        }
+        return response()->json([
+            "data"=>[
+                'msg'=>'user dengan id ($id),tidak ditemukan'
+            ]
+            ],422);
+     }
+     public function deactivation_account($id){
+        $user=User::find($id);
+
+        if($user){
+            User::where('id',$id)->update(['status'=>'non-aktif']);
+
+            return response()->json([
+                "data"=>[
+                    'msg'=>'user dengan id'.$id.'berhasil di nonaktifkan'
+                ]
+                ],200);
+        }
+        return response()->json([
+            "data"=>[
+                'msg'=>'user dengan id'.$id.'tidak ditemukan'
+            ]
+            ],422);
+
+   }
 }

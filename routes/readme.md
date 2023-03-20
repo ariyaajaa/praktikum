@@ -42,3 +42,12 @@ Route::get('register',[AdminController::class,'show_register']);
 Route::get('register/{id}',[AdminController::class,'show_register_by-id']);
 
 
+//membuat aktivasi account dan nonaktifkannya
+Route::get('activation-account/{id}',[AdminController::class,'activation_account']);
+    Route::get('deactivation-account/{id}',[AdminController::class,'deactivation_account']);
+
+//membuat 3 model resep
+
+    Route::get('create-recipe',[AdminController::class,'create_recipe']);
+
+

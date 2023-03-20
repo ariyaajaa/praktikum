@@ -23,5 +23,12 @@ Route::middleware('admin.api')->prefix('admin')->group (function () {
     Route::post('register',[AdminController::class,'register']);
     Route::get('register',[AdminController::class,'show_register']);
     Route::get('register/{id}',[AdminController::class,'show_register_by_id']);
+
     Route::get('register/{id}',[AdminController::class,'update_register']);
+    Route::get('register/{id}',[AdminController::class,'delete_register']);
+
+    Route::get('activation-account/{id}',[AdminController::class,'activation_account']);
+    Route::get('deactivation-account/{id}',[AdminController::class,'deactivation_account']);
+
+    Route::get('create-recipe',[AdminController::class,'create_recipe']);
 });
